@@ -5,9 +5,37 @@
     xmlns:local="using:MVVM_1_Demo"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
+    xmlns:coverter ="using:MVVM_1_Demo"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+    <Page.Resources>
+        <coverter:NameConverter x:Key="NameConverter"/>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <Grid x:Name="LayoutRoot" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel x:Name="TitlePanel" Grid.Row="0" >
+                <TextBlock Text="{Binding TitleIndex,Converter={StaticResource NameConverter}}" FontSize="30"/>
+                <TextBlock Text="{Binding Title}" Margin="9,-7,0,0"/>
+            </StackPanel>
+            <StackPanel x:Name="ContenPanel" Grid.Row="1">
+                <Slider x:Name="s1" Value="{Binding Path=Value,ElementName=s2,Mode=TwoWay}"/>
+                <Slider x:Name="s2" />
+                <TextBlock Text="{Binding Path=Value,ElementName=s2}" FontSize="25"/>
+                <ListBox ItemsSource="{Binding OrderModels}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding OrderID}"/>
+                                <TextBlock Text="{Binding OrderName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
