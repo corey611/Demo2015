@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:coverter ="using:MVVM_1_Demo"
+    xmlns:interactive ="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <coverter:NameConverter x:Key="NameConverter"/>
@@ -22,6 +23,14 @@
                 <TextBlock Text="{Binding Title}" Margin="9,-7,0,0"/>
             </StackPanel>
             <StackPanel x:Name="ContenPanel" Grid.Row="1">
+                <Button x:Name="btn" Content="CommandButton">
+                    <Button.Triggers>
+                        <EventTrigger>
+                            
+                        </EventTrigger>
+                    </Button.Triggers>
+                    
+                </Button>
                 <Slider x:Name="s1" Value="{Binding Path=Value,ElementName=s2,Mode=TwoWay}"/>
                 <Slider x:Name="s2" />
                 <TextBlock Text="{Binding Path=Value,ElementName=s2}" FontSize="25"/>
